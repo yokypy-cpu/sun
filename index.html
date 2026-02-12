@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sunflower with Heart Effect</title>
+<title>Sunflower</title>
 
-<!-- โหลดฟ้อน DynaPuff จาก Google Fonts -->
+<!-- ฟ้อน DynaPuff -->
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet">
 
 <style>
@@ -15,99 +15,191 @@ body{
   display:flex;
   justify-content:center;
   align-items:flex-end;
-  background-color: #000;
+  background:#000;
   overflow:hidden;
-  transition: background-color 2s ease-out;
+  transition: background 1.5s ease;
+  font-family:'DynaPuff', cursive;
 }
 
-/* ข้อความ "Click Me" */
-.title{
+/* 🌻 ต้นไม้ */
+.plant{
+  position:relative;
+  width:300px;
+  height:620px;
+  transform-origin:bottom center;
+  cursor:pointer;
+  z-index:5;
+}
+
+/* 🌬 โยก */
+@keyframes sway{
+  0%{transform:rotate(0deg);}
+  25%{transform:rotate(4deg);}
+  50%{transform:rotate(-4deg);}
+  75%{transform:rotate(2deg);}
+  100%{transform:rotate(0deg);}
+}
+.plant.sway{
+  animation:sway 1.8s ease;
+}
+
+/* 🌱 ก้าน */
+.stem{
   position:absolute;
-  top:10%;
+  bottom:0;
   left:50%;
   transform:translateX(-50%);
-  font-family: 'DynaPuff', cursive; /* ใช้ฟ้อน DynaPuff */ :contentReference[oaicite:1]{index=1}
-  font-size: 50px;
-  color: #fff;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-  cursor: pointer;
-  z-index: 10;
+  width:18px;
+  height:420px;
+  background:linear-gradient(to top,#1b5e20,#43a047);
+  border-radius:20px;
+  z-index:1;
 }
 
-/* เครดิตด้านล่าง */
-.credit {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'DynaPuff', cursive;
-  font-size: 20px;
-  color: #fff;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  z-index: 10;
+/* 🍃 ใบ */
+.leaf{
+  position:absolute;
+  width:140px;
+  height:95px;
+  background:linear-gradient(to right,#2e7d32,#66bb6a);
+  z-index:2;
+}
+.leaf.left{
+  bottom:200px;
+  left:50%;
+  transform:translateX(-100%) rotate(-10deg);
+  border-radius:100% 0 100% 0;
+}
+.leaf.right{
+  bottom:260px;
+  left:50%;
+  transform:rotate(10deg);
+  border-radius:0 100% 0 100%;
 }
 
-/* หัวใจโปรยทั่วจอ */
-@keyframes heartSpread{
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translateY(30px) scale(1.5);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(200px) scale(1.5);
-  }
-}
-.heart span {
-  position: absolute;
-  font-size: 40px;
-  color: red;
-  opacity: 0;
-  animation: heartSpread 2s forwards;
+/* 🌼 ดอก */
+.flower{
+  position:absolute;
+  bottom:380px;
+  left:50%;
+  transform:translateX(-50%);
+  width:240px;
+  height:240px;
+  z-index:3; /* ดอกอยู่หน้าก้าน */
 }
 
-/* ส่วนอื่น ๆ ของดอกไม้ */
-.plant{position:relative;width:300px;height:620px;transform-origin:bottom center;cursor:pointer;z-index:10;}
-@keyframes sway{0%{transform:rotate(0deg);}25%{transform:rotate(4deg);}50%{transform:rotate(-4deg);}75%{transform:rotate(2deg);}100%{transform:rotate(0deg);}}
-.plant.sway{animation:sway 1.8s ease;}
-.stem{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:18px;height:420px;background:linear-gradient(to top,#1b5e20,#43a047);border-radius:20px;z-index:1;}
-.leaf{position:absolute;width:150px;height:100px;background:linear-gradient(to right,#2e7d32,#66bb6a);z-index:0;}
-.leaf.left{bottom:170px;left:53%;transform-origin:right center;transform:translateX(-100%) rotate(-10deg);border-radius:100% 0 100% 0;}
-.leaf.right{bottom:240px;left:48%;transform-origin:left center;transform:rotate(10deg);border-radius:0 100% 0 100%;}
-.flower{position:absolute;bottom:380px;left:50%;transform:translateX(-50%);width:240px;height:240px;z-index:3;}
-.rotator{position:absolute;width:100%;height:100%;transform-origin:center;}
-.petal{position:absolute;width:65px;height:150px;top:50%;left:50%;transform-origin:bottom center;transform:translate(-50%,-100%) scale(0);border-radius:50%;background:linear-gradient(to top,#ff8f00,#ffb300,#ffd54f,#fff9c4);box-shadow:inset 0 -15px 20px rgba(0,0,0,.35),inset 0 10px 12px rgba(255,255,255,.4);animation:bloom .5s forwards;}
-.petal.inner{width:50px;height:120px;background:linear-gradient(to top,#ff6f00,#ffa000,#ffd54f);opacity:.95;}
-@keyframes bloom{to{transform:translate(-50%,-100%) scale(1);}}
-.center{position:absolute;width:130px;height:130px;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;background:#5d4037;background-image:radial-gradient(circle at 2px 2px, #4e342e 1px, transparent 1px);background-size:8px 8px;box-shadow:inset 0 20px 35px rgba(0,0,0,.6);z-index:4;}
+.rotator{
+  position:absolute;
+  width:100%;
+  height:100%;
+  transform-origin:center;
+}
+
+/* กลีบ */
+.petal{
+  position:absolute;
+  width:65px;
+  height:150px;
+  top:50%;
+  left:50%;
+  transform-origin:bottom center;
+  transform:translate(-50%,-100%) scale(0);
+  border-radius:50%;
+  background:linear-gradient(to top,#ff8f00,#ffb300,#ffd54f,#fff9c4);
+  box-shadow:
+    inset 0 -15px 20px rgba(0,0,0,.35),
+    inset 0 10px 12px rgba(255,255,255,.4);
+  animation:bloom .5s forwards;
+}
+.petal.inner{
+  width:50px;
+  height:120px;
+  background:linear-gradient(to top,#ff6f00,#ffa000,#ffd54f);
+  opacity:.95;
+}
+@keyframes bloom{
+  to{transform:translate(-50%,-100%) scale(1);}
+}
+
+/* 🌰 เกสร */
+.center{
+  position:absolute;
+  width:130px;
+  height:130px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#5d4037;
+  background-image:
+    radial-gradient(circle at 2px 2px,#4e342e 1px,transparent 1px);
+  background-size:8px 8px;
+  box-shadow:inset 0 20px 35px rgba(0,0,0,.6);
+  z-index:4;
+}
+
+/* 💖 หัวใจ */
+@keyframes fall{
+  0%{opacity:1; transform:translateY(-30px) scale(1);}
+  100%{opacity:0; transform:translateY(400px) scale(1.6);}
+}
+.heart{
+  position:fixed;
+  font-size:30px;
+  animation:fall linear forwards;
+}
+
+/* 🔽 ข้อความล่าง */
+.footer{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  color:#fff;
+  z-index:10;
+}
+
+.credit{
+  font-size:22px;
+}
+
+.click{
+  font-size:42px;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
 
-<!-- ข้อความคลิก -->
-<div class="title">Click Me</div>
-
-<!-- ดอกไม้ -->
 <div class="plant" id="plant">
-  <div class="flower"><div id="petals"></div><div class="center"></div></div>
+
+  <div class="flower">
+    <div id="petals"></div>
+    <div class="center"></div>
+  </div>
+
   <div class="stem"></div>
   <div class="leaf left"></div>
   <div class="leaf right"></div>
+
 </div>
 
-<!-- เอ็ฟเฟ็กต์หัวใจ -->
-<div class="heart" id="heart"></div>
-
-<!-- เครดิตด้านล่าง -->
-<div class="credit">Fon Sunflower</div>
+<!-- ข้อความล่าง -->
+<div class="footer">
+  <div class="credit">Fon Sunflower</div>
+  <div class="click" id="clickText">Click Me</div>
+</div>
 
 <script>
-// สร้างกลีบดอกไม้
+
+// สร้างกลีบ
 const container = document.getElementById("petals");
+
+/* ชั้นนอก */
 for(let i=0;i<24;i++){
   const rot=document.createElement("div");
   rot.className="rotator";
@@ -118,6 +210,8 @@ for(let i=0;i<24;i++){
   rot.appendChild(pet);
   container.appendChild(rot);
 }
+
+/* ชั้นใน */
 for(let i=0;i<24;i++){
   const rot=document.createElement("div");
   rot.className="rotator";
@@ -129,24 +223,35 @@ for(let i=0;i<24;i++){
   container.appendChild(rot);
 }
 
-// คลิกแล้วให้ดอกไม้โยก + หัวใจโปรยกระจาย
+// คลิกแล้วทำงาน
 const plant=document.getElementById("plant");
-plant.addEventListener("click", ()=>{
-  document.querySelector(".title").style.display="none";
-  document.body.style.backgroundColor="#ffd6e8"; // เปลี่ยนพื้นหลัง
+
+plant.addEventListener("click",()=>{
+
+  // ซ่อนเฉพาะ Click Me
+  document.getElementById("clickText").style.display="none";
+
+  // เปลี่ยนพื้นหลังให้สว่าง
+  document.body.style.background="linear-gradient(to top,#ffd6e8,#ffe082)";
+
+  // โยก
   plant.classList.remove("sway");
   void plant.offsetWidth;
   plant.classList.add("sway");
 
-  const heart = document.getElementById("heart");
-  for (let i = 0; i < 50; i++){
-    const h = document.createElement('span');
-    h.innerHTML='❤️';
-    heart.appendChild(h);
-    h.style.top = `${Math.random()*100}%`;
-    h.style.left = `${Math.random()*100}%`;
-    h.style.animationDelay = `${Math.random()*2}s`;
+  // โปรยหัวใจทั่วจอ
+  for(let i=0;i<70;i++){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.top=Math.random()*10+"vh";
+    heart.style.fontSize=(20+Math.random()*35)+"px";
+    heart.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
   }
+
 });
 </script>
 
